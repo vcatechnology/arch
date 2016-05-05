@@ -5,4 +5,5 @@ RUN pacman --noconfirm --needed -S \
   make \
   cmake \
   automake \
-  git
+  git \
+  python
