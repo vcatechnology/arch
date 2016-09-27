@@ -1,20 +1,6 @@
 FROM vcatechnology/base-archlinux:latest
 MAINTAINER VCA Technology <developers@vcatechnology.com>
 
-# Build-time metadata as defined at http://label-schema.org
-ARG BUILD_DATE
-ARG VCS_REF
-ARG VERSION
-LABEL org.label-schema.build-date=$BUILD_DATE \
-      org.label-schema.name="Arch Linux" \
-      org.label-schema.description="Arch Linux updated daily with the latest packages" \
-      org.label-schema.url="https://vcatechnology.com" \
-      org.label-schema.vcs-ref=$VCS_REF \
-      org.label-schema.vcs-url="https://github.com/vcatechnology/docker-arch" \
-      org.label-schema.vendor="VCA Technology" \
-      org.label-schema.version=$VERSION \
-      org.label-schema.schema-version="1.0"
-
 RUN pacman --noconfirm -Syyu && \
   pacman-db-upgrade && \
   pacman --noconfirm -S reflector rsync && \
