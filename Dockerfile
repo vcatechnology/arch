@@ -37,3 +37,4 @@ RUN if [ -f /etc/locale.gen.pacnew ];  then \
 RUN cat /etc/locale.gen | expand | sed 's/^# .*$//g' | sed 's/^#$//g' | egrep -v '^$' | sed 's/^#//g' > /tmp/locale.gen \
   && mv -f /tmp/locale.gen /etc/locale.gen \
   && locale-gen
+ENV LANG=en_US.utf8
