@@ -48,3 +48,14 @@ RUN touch                            /usr/local/bin/vca-install-package && \
   echo 'pacman --noconfirm -S $@' >> /usr/local/bin/vca-install-package && \
   echo 'pacman --noconfirm -Scc'  >> /usr/local/bin/vca-install-package && \
   echo 'pacman-optimize'          >> /usr/local/bin/vca-install-package
+
+# Create uninstall script
+RUN touch                                                 /usr/local/bin/vca-uninstall-package && \
+  chmod +x                                                /usr/local/bin/vca-uninstall-package && \
+  echo '#! /bin/sh'                                    >> /usr/local/bin/vca-uninstall-package && \
+  echo 'set -e'                                        >> /usr/local/bin/vca-uninstall-package && \
+  echo 'pacman -Rsn --noconfirm $@'                    >> /usr/local/bin/vca-uninstall-package && \
+  echo 'if [ ! -z "$(pacman -Qtdq)" ]; then'           >> /usr/local/bin/vca-uninstall-package && \
+  echo '  pacman --noconfirm -Rns $(pacman -Qtdq);'    >> /usr/local/bin/vca-uninstall-package && \
+  echo 'fi'                                            >> /usr/local/bin/vca-uninstall-package && \
+  echo 'pacman-optimise'                               >> /usr/local/bin/vca-uninstall-package
