@@ -39,3 +39,12 @@ RUN cat /etc/locale.gen | expand | sed 's/^# .*$//g' | sed 's/^#$//g' | egrep -v
   && mv -f /tmp/locale.gen /etc/locale.gen \
   && locale-gen
 ENV LANG=en_US.utf8
+
+# Create install script
+RUN touch                            /usr/local/bin/vca-install-package && \
+  chmod +x                           /usr/local/bin/vca-install-package && \
+  echo '#! /bin/sh'               >> /usr/local/bin/vca-install-package && \
+  echo 'set -e'                   >> /usr/local/bin/vca-install-package && \
+  echo 'pacman --noconfirm -S $@' >> /usr/local/bin/vca-install-package && \
+  echo 'pacman --noconfirm -Scc'  >> /usr/local/bin/vca-install-package && \
+  echo 'pacman-optimize'          >> /usr/local/bin/vca-install-package
