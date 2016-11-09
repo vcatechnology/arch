@@ -1,28 +1,29 @@
 FROM vcatechnology/base-archlinux:latest
 MAINTAINER VCA Technology <developers@vcatechnology.com>
 
+# Optimise the mirror list
 RUN pacman --noconfirm -Syyu && \
   pacman-db-upgrade && \
   pacman --noconfirm -S reflector rsync && \
-  cp -vf /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup && \
-  reflector -l 200 -p https --sort rate --save /etc/pacman.d/mirrorlist
+  reflector -l 200 -p https --sort rate --save /etc/pacman.d/mirrorlist && \
+  pacman -Rsn --noconfirm reflector python rsync
 
-# remove reflector
-RUN pacman -Rsn --noconfirm reflector python rsync
-
-# update system
+# Update system
 RUN pacman -Su --noconfirm
 
-# update db
+# Update db
 RUN pacman-db-upgrade
 
-# remove orphaned packages
+# Remove orphaned packages
 RUN if [ ! -z "$(pacman -Qtdq)" ]; then \
-    pacman --noconfirm -Rns $(pacman -Qtdq) ; \
+    pacman --noconfirm -Rns $(pacman -Qtdq); \
   fi
 
-# clear pacman caches
+# Clear pacman caches
 RUN pacman --noconfirm -Scc
+
+# Optimise pacman database
+RUN pacman-optimize
 
 # Housekeeping
 RUN rm -f /etc/pacman.d/mirrorlist.pacnew
