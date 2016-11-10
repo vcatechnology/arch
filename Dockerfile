@@ -23,7 +23,7 @@ RUN if [ ! -z "$(pacman -Qtdq)" ]; then \
 RUN pacman --noconfirm -Scc
 
 # Optimise pacman database
-RUN pacman-optimize
+RUN pacman-optimize  --nocolor
 
 # Housekeeping
 RUN rm -f /etc/pacman.d/mirrorlist.pacnew
@@ -41,13 +41,13 @@ RUN cat /etc/locale.gen | expand | sed 's/^# .*$//g' | sed 's/^#$//g' | egrep -v
 ENV LANG=en_GB.utf8
 
 # Create install script
-RUN touch                            /usr/local/bin/vca-install-package && \
-  chmod +x                           /usr/local/bin/vca-install-package && \
-  echo '#! /bin/sh'               >> /usr/local/bin/vca-install-package && \
-  echo 'set -e'                   >> /usr/local/bin/vca-install-package && \
-  echo 'pacman --noconfirm -S $@' >> /usr/local/bin/vca-install-package && \
-  echo 'pacman --noconfirm -Scc'  >> /usr/local/bin/vca-install-package && \
-  echo 'pacman-optimize'          >> /usr/local/bin/vca-install-package
+RUN touch                              /usr/local/bin/vca-install-package && \
+  chmod +x                             /usr/local/bin/vca-install-package && \
+  echo '#! /bin/sh'                 >> /usr/local/bin/vca-install-package && \
+  echo 'set -e'                     >> /usr/local/bin/vca-install-package && \
+  echo 'pacman --noconfirm -S $@'   >> /usr/local/bin/vca-install-package && \
+  echo 'pacman --noconfirm -Scc'    >> /usr/local/bin/vca-install-package && \
+  echo 'pacman-optimize  --nocolor' >> /usr/local/bin/vca-install-package
 
 # Create uninstall script
 RUN touch                                                 /usr/local/bin/vca-uninstall-package && \
@@ -58,4 +58,4 @@ RUN touch                                                 /usr/local/bin/vca-uni
   echo 'if [ ! -z "$(pacman -Qtdq)" ]; then'           >> /usr/local/bin/vca-uninstall-package && \
   echo '  pacman --noconfirm -Rns $(pacman -Qtdq);'    >> /usr/local/bin/vca-uninstall-package && \
   echo 'fi'                                            >> /usr/local/bin/vca-uninstall-package && \
-  echo 'pacman-optimise'                               >> /usr/local/bin/vca-uninstall-package
+  echo 'pacman-optimise  --nocolor'                    >> /usr/local/bin/vca-uninstall-package
