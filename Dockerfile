@@ -38,7 +38,7 @@ RUN if [ -f /etc/locale.gen.pacnew ];  then \
 RUN cat /etc/locale.gen | expand | sed 's/^# .*$//g' | sed 's/^#$//g' | egrep -v '^$' | sed 's/^#//g' > /tmp/locale.gen \
   && mv -f /tmp/locale.gen /etc/locale.gen \
   && locale-gen
-ENV LANG=en_US.utf8
+ENV LANG=en_GB.utf8
 
 # Create install script
 RUN touch                            /usr/local/bin/vca-install-package && \
