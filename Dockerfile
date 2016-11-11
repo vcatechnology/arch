@@ -14,6 +14,7 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.vcs-url="https://github.com/vcatechnology/docker-arch" \
       org.label-schema.vendor="VCA Technology" \
       org.label-schema.version=$VERSION \
+      org.label-schema.license=MIT \
       org.label-schema.schema-version="1.0"
 
 # Optimise the mirror list
