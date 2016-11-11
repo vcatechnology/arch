@@ -58,4 +58,4 @@ RUN touch                                                              /usr/loca
   echo 'if [ ! -z "$(pacman -Qtdq)" ]; then'                        >> /usr/local/bin/vca-uninstall-package && \
   echo '  pacman --noprogressbar --noconfirm -Rns $(pacman -Qtdq);' >> /usr/local/bin/vca-uninstall-package && \
   echo 'fi'                                                         >> /usr/local/bin/vca-uninstall-package && \
-  echo 'pacman-optimise --nocolor'                                  >> /usr/local/bin/vca-uninstall-package
+  echo 'pacman-optimize --nocolor'                                  >> /usr/local/bin/vca-uninstall-package
