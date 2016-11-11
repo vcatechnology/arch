@@ -2,12 +2,13 @@ FROM vcatechnology/base-archlinux:latest
 MAINTAINER VCA Technology <developers@vcatechnology.com>
 
 # Build-time metadata as defined at http://label-schema.org
+ARG PROJECT_NAME
 ARG BUILD_DATE
 ARG VCS_REF
 ARG VERSION
 LABEL org.label-schema.build-date=$BUILD_DATE \
-      org.label-schema.name="Arch Linux" \
-      org.label-schema.description="An image that is updated daily with new packages" \
+      org.label-schema.name="$PROJECT_NAME" \
+      org.label-schema.description="An Arch Linux image that is updated daily with new packages" \
       org.label-schema.url="https://www.archlinux.org/" \
       org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url="https://github.com/vcatechnology/docker-arch" \
