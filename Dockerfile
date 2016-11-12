@@ -52,9 +52,10 @@ RUN if [ -f /etc/locale.gen.pacnew ];  then \
 
 # Generate locales
 RUN cat /etc/locale.gen | expand | sed 's/^# .*$//g' | sed 's/^#$//g' | egrep -v '^$' | sed 's/^#//g' > /tmp/locale.gen \
+  && echo en_GB.UTF8 >> /tmp/locale.gen \
   && mv -f /tmp/locale.gen /etc/locale.gen \
   && locale-gen
-ENV LANG=en_GB.utf8
+ENV LANG=en_GB.UTF8
 
 # Create install script
 RUN touch                                            /usr/local/bin/vca-install-package && \
