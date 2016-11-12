@@ -1,4 +1,4 @@
-# Arch Linux Docker container
+# Arch Linux Docker Container
 
 [![](https://images.microbadger.com/badges/image/vcatechnology/arch.svg)](http://microbadger.com/images/vcatechnology/arch "Image Layers") [![](https://images.microbadger.com/badges/version/vcatechnology/arch.svg)](http://microbadger.com/images/vcatechnology/arch "Image Version") [![](https://images.microbadger.com/badges/license/vcatechnology/arch.svg)](https://microbadger.com/images/vcatechnology/arch "Image License")  [![](https://images.microbadger.com/badges/commit/vcatechnology/arch.svg)](https://github.com/vcatechnology/docker-arch "Image Commit")
 
