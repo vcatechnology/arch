@@ -42,7 +42,7 @@ RUN pacman --noconfirm -Scc
 RUN pacman-optimize --nocolor
 
 # Housekeeping
-RUN rm -f /etc/pacman.d/mirrorlist.pacnew
+RUN rm -f /etc/pacman.d/mirrorlist.pacnew \
  && if [ -f /etc/systemd/coredump.conf.pacnew ]; then \
       mv -f /etc/systemd/coredump.conf.pacnew /etc/systemd/coredump.conf ; \
     fi \
