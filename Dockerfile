@@ -17,6 +17,11 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.license=MIT \
       org.label-schema.schema-version="1.0"
 
+# Refresh the keyring
+RUN pacman-key --init \
+ && pacman-key --populate archlinux \
+ && pacman-key --refresh-keys
+
 # Optimise the mirror list
 RUN pacman --noconfirm -Syyu \
  && pacman-db-upgrade \
