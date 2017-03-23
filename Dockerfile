@@ -68,7 +68,7 @@ RUN touch                                              /usr/local/bin/vca-instal
  && echo '#! /bin/sh'                               >> /usr/local/bin/vca-install-package \
  && echo 'set -e'                                   >> /usr/local/bin/vca-install-package \
  && echo 'pacman --noprogressbar --noconfirm -S $@' >> /usr/local/bin/vca-install-package \
- && echo 'pacman --noprogressbar --noconfirm -Scc'  >> /usr/local/bin/vca-install-package \
+ && echo 'yes | pacman --noprogressbar -Scc'        >> /usr/local/bin/vca-install-package \
  && echo 'pacman-optimize --nocolor'                >> /usr/local/bin/vca-install-package
 
 # Create uninstall script
