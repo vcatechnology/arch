@@ -41,7 +41,7 @@ RUN if [ ! -z "$(pacman -Qtdq)" ]; then \
     fi
 
 # Clear pacman caches
-RUN pacman --noconfirm -Scc
+RUN yes | pacman --noconfirm -Scc
 
 # Optimise pacman database
 RUN pacman-optimize --nocolor
