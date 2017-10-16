@@ -63,21 +63,7 @@ RUN echo "en_GB.UTF-8 UTF-8" >  /etc/locale.gen \
 ENV LANG=en_GB.UTF-8
 
 # Create install script
-RUN touch                                              /usr/local/bin/vca-install-package \
- && chmod +x                                           /usr/local/bin/vca-install-package \
- && echo '#! /bin/sh'                               >> /usr/local/bin/vca-install-package \
- && echo 'set -e'                                   >> /usr/local/bin/vca-install-package \
- && echo 'pacman --noprogressbar --noconfirm -S $@' >> /usr/local/bin/vca-install-package \
- && echo 'yes | pacman --noprogressbar -Scc'        >> /usr/local/bin/vca-install-package \
- && echo 'pacman-optimize --nocolor'                >> /usr/local/bin/vca-install-package
+ADD vca-install-package /usr/local/bin
 
 # Create uninstall script
-RUN touch                                                                /usr/local/bin/vca-uninstall-package \
- && chmod +x                                                             /usr/local/bin/vca-uninstall-package \
- && echo '#! /bin/sh'                                                 >> /usr/local/bin/vca-uninstall-package \
- && echo 'set -e'                                                     >> /usr/local/bin/vca-uninstall-package \
- && echo 'pacman --noprogressbar -Rsn --noconfirm $@'                 >> /usr/local/bin/vca-uninstall-package \
- && echo 'if [ ! -z "$(pacman -Qtdq)" ]; then'                        >> /usr/local/bin/vca-uninstall-package \
- && echo '  pacman --noprogressbar --noconfirm -Rns $(pacman -Qtdq);' >> /usr/local/bin/vca-uninstall-package \
- && echo 'fi'                                                         >> /usr/local/bin/vca-uninstall-package \
- && echo 'pacman-optimize --nocolor'                                  >> /usr/local/bin/vca-uninstall-package
+ADD vca-uninstall-package /usr/local/bin
